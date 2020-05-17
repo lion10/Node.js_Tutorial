@@ -1,41 +1,29 @@
-const EventEmitter = require('events');
-const eventEmitter = new EventEmitter();
+const readline = require('readline');
+const rl = readline.createInterface({input: process.stdin, output: process.stdout});
 
+const num1 = Math.floor( Math.random()*10 + 1);
+const num2 = Math.floor( Math.random() *10 + 1);
+const answer = num1 + num2; 
 
-
-eventEmitter.on('tutorial', (num1 ,num2)=>{
-    console.log(num1 + num2);
-});
-
-// the event triggired whenever call emit()
-eventEmitter.emit('tutorial',(1,2));
-
-class Person extends EventEmitter{
-    constructor(name){
-        super();
-        this._name = name;
+rl.question(`What is ${ num1 } + ${ num2 } ? \n`,
+    (userInput) =>{
+        if(userInput.trim() == answer)
+            rl.close();
+        else{
+            rl.setPrompt('Incorrect respons please try again! \n')
+            rl.prompt(); 
+            rl.on('line',(userInput)=> {  // line event keep the user in loop until get the right answer
+                if(userInput.trim() == answer)
+                    rl.close();
+                else{
+                    rl.setPrompt(`Incorrect respons of ${userInput} please try again! \n`)
+                    rl.prompt();
+                }
+            });
+        }
     }
+);
 
-    get name(){
-        return this._name;
-    }
-}
-
-
-let omar = new Person('Omar');
-let moh = new Person('Moh');
-
-omar.on('name', () =>{
-    console.log('my name is ' + omar.name);
-});
-moh.on('name', () =>{
-    console.log('my name is ' + moh.name);
-});
-omar.emit('name');
-moh.emit('name');
-
-
-
-
-
-
+rl.on('close', () =>{  // close event when the user submit the right answer will rl close ...
+    console.log('correct!!!')
+})
