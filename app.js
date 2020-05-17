@@ -1,44 +1,63 @@
 const fs = require('fs');
 
-//create file
-
-// fs.writeFile('test.txt','hi omar!',(err) => {
+//create folder
+// fs.mkdir('tutorial',(err) =>{
 //     if(err)
-//         console.log(err)
+//         console.log(err);
 //     else{
-//         console.log('File successfully created!')
-//         fs.readFile('test.txt','utf8',(err,file)=>{ // utf8 is an optional but to read from file we have to put it
-//             if (err)
+//         // create new file in tutorial folder 
+//         fs.writeFile('./tutorial/test.txt','hi omar!', (err)=>{
+//             if(err)
 //                 console.log(err);
-//             else
-//                 console.log(file);
+//             else {
+//                 console.log('successfully created file');
+//             }
 //         })
 //     }
 // })
 
-// rename file 
 
-// fs.rename('test.txt','test2.txt',(err)=> {
-//     if(err)
-//         console.log(err);
-//     else
-//         console.log('Successfully renamed file');
-// })
+// to delete folder if it have one file only
 
-
-// apend data to file
-// fs.appendFile('test2.txt',', I hope you are doing well',(err)=>{
-//     if(err)
-//         console.log(err);
-//     else
-//         console.log('Successfully appended data to file');
+// fs.unlink('./tutorial/omar.txt',(err)=>{
+//         if(err)
+//             console.log(err);
+//         else {
+//             fs.rmdir('tutorial',(err)=>{
+//                 if (err)
+//                     console.log(err);
+//                 else{
+//                     console.log('successfully deleted folder');
+//                 }
+//             });
+//         }
 // });
 
 
-// delete file
-fs.unlink('test2.txt', (err)=>{
+
+// to delete folder if it have more than one file 
+//1st delete all files in folder/directory
+fs.readdir('tutorial',(err,files)=>{
     if(err)
         console.log(err);
-    else
-        console.log('Successfully deleted the file');
+    else{
+        for (let file of files){
+            fs.unlink('./tutorial/'+ file ,(err)=>{
+                if(err)
+                    console.log(err);
+                else{
+                    console.log('file ' + file + ' has been removed from folder');
+                }
+            })
+        }
+    }
 })
+
+//2nd then remove the folder 
+fs.rmdir('tutorial',(err)=>{
+        if (err)
+            console.log(err);
+        else{
+            console.log('successfully deleted folder');
+        }
+});
