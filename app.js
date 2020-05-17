@@ -1,29 +1,44 @@
-const readline = require('readline');
-const rl = readline.createInterface({input: process.stdin, output: process.stdout});
+const fs = require('fs');
 
-const num1 = Math.floor( Math.random()*10 + 1);
-const num2 = Math.floor( Math.random() *10 + 1);
-const answer = num1 + num2; 
+//create file
 
-rl.question(`What is ${ num1 } + ${ num2 } ? \n`,
-    (userInput) =>{
-        if(userInput.trim() == answer)
-            rl.close();
-        else{
-            rl.setPrompt('Incorrect respons please try again! \n')
-            rl.prompt(); 
-            rl.on('line',(userInput)=> {  // line event keep the user in loop until get the right answer
-                if(userInput.trim() == answer)
-                    rl.close();
-                else{
-                    rl.setPrompt(`Incorrect respons of ${userInput} please try again! \n`)
-                    rl.prompt();
-                }
-            });
-        }
-    }
-);
+// fs.writeFile('test.txt','hi omar!',(err) => {
+//     if(err)
+//         console.log(err)
+//     else{
+//         console.log('File successfully created!')
+//         fs.readFile('test.txt','utf8',(err,file)=>{ // utf8 is an optional but to read from file we have to put it
+//             if (err)
+//                 console.log(err);
+//             else
+//                 console.log(file);
+//         })
+//     }
+// })
 
-rl.on('close', () =>{  // close event when the user submit the right answer will rl close ...
-    console.log('correct!!!')
+// rename file 
+
+// fs.rename('test.txt','test2.txt',(err)=> {
+//     if(err)
+//         console.log(err);
+//     else
+//         console.log('Successfully renamed file');
+// })
+
+
+// apend data to file
+// fs.appendFile('test2.txt',', I hope you are doing well',(err)=>{
+//     if(err)
+//         console.log(err);
+//     else
+//         console.log('Successfully appended data to file');
+// });
+
+
+// delete file
+fs.unlink('test2.txt', (err)=>{
+    if(err)
+        console.log(err);
+    else
+        console.log('Successfully deleted the file');
 })
