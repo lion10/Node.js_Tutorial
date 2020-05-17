@@ -17,4 +17,4 @@ module.exports.SomeMathObject= SomeMathObject;
 
 // more readable code, and the same code above
 
-module.exports ={sum: sum, PI:PI, SomeMathObject:SomeMathObject}
+module.exports ={ sum : sum, PI : PI, SomeMathObject : SomeMathObject }
