@@ -1,5 +1,13 @@
-const tutorial = require('./tutorial');
+const http = require('http'); 
+const server = http.createServer( (req,res) => {
+    if(req.url === '/'){
+        res.write('hello world from root side')
+        res.end();
+    }else {
+        res.write('you read from another side')
+        res.end();
 
-console.log(tutorial.PI) // 3.14
-console.log(new tutorial.SomeMathObject()) // created new object SomeMathObject {}
-console.log(tutorial.sum(2,1)) // 3
+    }
+})
+
+server.listen('3000');
