@@ -1,6 +1,9 @@
+<<<<<<< JsonBody
+=======
 // this file just i copyied it from JsonBody Bransh so => if you want to test this file plz go to the bransh 
 // JsonBody and test there ... not here yub ^__^
-
+  
+>>>>>>> master
 const express = require('express');
 const bodyParser =require('body-parser');
 const path = require('path');
