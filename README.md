@@ -12,3 +12,4 @@
 1) https://nodejs.org/en/
 2) https://www.npmjs.com/
 3) https://expressjs.com/
+4) https://code.jquery.com/
