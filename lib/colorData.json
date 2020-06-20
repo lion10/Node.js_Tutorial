@@ -1,0 +1,17 @@
+{
+    "name":"color-file",
+    "colorList":[
+        {
+            "color":"red",
+            "hex":"#1535"
+        },
+        {
+            "color":"green",
+            "hex":"#545"
+        },
+        {
+            "color":"te",
+            "hex":"#5413a5"
+        }
+    ]   
+}
